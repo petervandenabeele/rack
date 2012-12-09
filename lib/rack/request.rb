@@ -70,6 +70,8 @@ module Rack
     def scheme
       if @env['HTTPS'] == 'on'
         'https'
+      elsif @env['HTTP_X_OPENMINDS_SSL'] == '1'
+        'https'
       elsif @env['HTTP_X_FORWARDED_SSL'] == 'on'
         'https'
       elsif @env['HTTP_X_FORWARDED_SCHEME']
