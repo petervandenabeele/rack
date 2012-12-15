@@ -68,9 +68,15 @@ module Rack
     end
 
     def scheme
+
+Rails.logger.warn "HTTP_X_OPENMINDS_SSL is #{@env['HTTP_X_OPENMINDS_SSL'].inspect}"
+
       if @env['HTTPS'] == 'on'
         'https'
       elsif @env['HTTP_X_OPENMINDS_SSL'] == '1'
+
+Rails.logger.warn "HTTP_X_OPENMINDS_SSL was seen"
+
         'https'
       elsif @env['HTTP_X_FORWARDED_SSL'] == 'on'
         'https'
